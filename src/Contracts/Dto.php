@@ -8,14 +8,6 @@ namespace Shortl\Shortl\Contracts;
  */
 interface Dto
 {
-
-    /**
-     * Dto constructor.
-     * @param array $data
-     */
-    public function __construct(array $data);
-
-
     /**
      * @param array $data
      * @return mixed
