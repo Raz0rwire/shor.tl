@@ -1,0 +1,18 @@
+{
+    "name": "shortl/shortl",
+    "description": "Url shortener for shor.tl",
+    "type": "microservice",
+    "authors": [
+        {
+            "name": "Kevin Hoogerwerf",
+            "email": "kevin@codebridge.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Shortl\\Shortl\\": "src/"
+        }
+    }
+}
