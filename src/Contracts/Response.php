@@ -13,5 +13,5 @@ interface Response
      * @param array $headers
      * @return mixed
      */
-    public function __invoke($content, array $headers);
+    public function __invoke(string $content, array $headers);
 }

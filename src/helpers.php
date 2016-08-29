@@ -42,7 +42,7 @@ function app(array $config, Request $parser, ActionMapper $mapper, Response $res
     try {
 
         $request = $parser($_SERVER);
-        $action = $mapper($request);
+        $action = $mapper($request, $config);
 
         return $action($request, $response, $config);
 

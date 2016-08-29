@@ -32,5 +32,4 @@ final class ResponseFactory implements Response
             header(implode(': ', [$header, $value]));
         }
     }
-
 }
