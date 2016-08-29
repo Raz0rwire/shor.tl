@@ -3,6 +3,7 @@
 namespace Shortl\Shortl\Infrastructure;
 
 use Shortl\Shortl\Contracts\Action;
+use Shortl\Shortl\Contracts\Request;
 use Shortl\Shortl\Domain\Url;
 
 /**
@@ -21,22 +22,22 @@ final class ActionMapper
 
 
     /**
-     * @param RequestParser $request
+     * @param Request $request
      * @return Action
      * @throws ActionNotFound
      */
-    public function __invoke(RequestParser $request)  : Action
+    public function __invoke(Request $request)  : Action
     {
         return $this->getAction($request);
     }
 
 
     /**
-     * @param RequestParser $request
+     * @param Request $request
      * @return Action
      * @throws ActionNotFound
      */
-    private function getAction(RequestParser $request) : Action
+    private function getAction(Request $request) : Action
     {
         $action = null;
 

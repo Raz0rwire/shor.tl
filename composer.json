@@ -13,6 +13,9 @@
     "autoload": {
         "psr-4": {
             "Shortl\\Shortl\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     }
 }
