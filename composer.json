@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "phpunit/phpunit": "^5.5"
+    },
     "autoload": {
         "psr-4": {
             "Shortl\\Shortl\\": "src/"

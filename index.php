@@ -6,6 +6,7 @@ $config = array_merge(include('config/database.php'), include('config/defaults.p
 
 print app(
     $config,
+    $_SERVER,
     instantiate_class('\Shortl\Shortl\Infrastructure\RequestParser'),
     instantiate_class('\Shortl\Shortl\Infrastructure\ActionMapper'),
     instantiate_class('\Shortl\Shortl\Infrastructure\ResponseFactory')

@@ -32,16 +32,17 @@ function instantiate_class(string $className)
 
 /**
  * @param array $config
+ * @param array $server
  * @param Request $parser
  * @param ActionMapper $mapper
  * @param Response $response
  * @return string
  */
-function app(array $config, Request $parser, ActionMapper $mapper, Response $response) : string
+function app(array $config, array $server, Request $parser, ActionMapper $mapper, Response $response) : string
 {
     try {
 
-        $request = $parser($_SERVER);
+        $request = $parser($server);
         $action = $mapper($request, $config);
 
         return $action($request, $response, $config);

@@ -17,7 +17,7 @@ final class JsonFormatter implements Formatter
     public function __construct($data)
     {
         $formatted = json_encode($data);
-        if (is_null($formatted)) {
+        if (is_null($formatted) || $formatted === 'null') {
             throw new UnserializableContent();
         }
 

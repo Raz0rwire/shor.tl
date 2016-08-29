@@ -24,11 +24,17 @@ final class ResponseFactory implements Response
 
 
     /**
-     * @param array $headers
+     * @param array $array
      */
-    private function setHeaders(array $headers)
+    private function setHeaders(array $array)
     {
-        foreach ($headers + ['Handled-By' => 'Shor.tl', 'HTTP/1.1' => '200 OK'] as $header => $value) {
+        $headers = $array + ['Handled-By' => 'Shor.tl', 'HTTP/1.1' => '200'];
+
+        foreach ($headers as $header => $value) {
+            if ($header === 'HTTP/1.1') {
+                http_response_code($value);
+            }
+
             header(implode(': ', [$header, $value]));
         }
     }

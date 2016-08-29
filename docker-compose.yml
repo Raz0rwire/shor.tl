@@ -1,0 +1,13 @@
+version: '2'
+services:
+  database:
+    container_name: 'shortl-db'
+    image: mariadb:latest
+    volumes:
+      - /var/lib/mysql
+    ports:
+      - "3391:3306"
+    expose:
+      - "3391"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
