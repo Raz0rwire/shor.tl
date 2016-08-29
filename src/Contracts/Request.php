@@ -12,6 +12,6 @@ interface Request
      * @param array $server
      * @return Request
      */
-    public function __invoke(array $server) : Request;
+    public function __invoke($server);
 
 }

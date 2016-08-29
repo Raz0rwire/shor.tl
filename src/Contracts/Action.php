@@ -14,6 +14,6 @@ interface Action
      * @param Response $response
      * @return mixed
      */
-    public function __invoke(Request $request, Response $response);
+    public function __invoke($request,$response);
 
 }
