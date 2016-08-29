@@ -56,7 +56,7 @@ class CreateShortUrl implements Action
                         'short_url' => $this->config['base_url'] . $dto->slug
                     ]
                 ]
-            ))->output;
+            ))->getOutput();
 
             $status = 201;
 
@@ -68,7 +68,7 @@ class CreateShortUrl implements Action
                         'url' => 'Url is not formatted correctly',
                     ]
                 ]
-            ))->output;
+            ))->getOutput();
 
             $status = 422;
         }

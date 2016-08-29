@@ -1,16 +1,15 @@
 <?php
 
 namespace Shortl\Shortl\Infrastructure;
+use Shortl\Shortl\Contracts\Formatter;
 
 /**
  * Class JsonFormatter
  * @package Shortl\Shortl\Infrastructure
  */
-final class JsonFormatter
+final class JsonFormatter implements Formatter
 {
-
     private $output;
-
 
     /**
      * JsonFormatter constructor.
@@ -38,6 +37,15 @@ final class JsonFormatter
             default:
                 return null;
         }
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getOutput() : string
+    {
+        return $this->output;
     }
 }
 

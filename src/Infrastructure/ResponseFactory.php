@@ -19,19 +19,16 @@ final class ResponseFactory implements Response
     public function __invoke(string $data, array $headers)
     {
         $this->setHeaders($headers);
-
         return $data;
     }
 
 
     /**
-     * @param array $array
+     * @param array $headers
      */
-    private function setHeaders(array $array)
+    private function setHeaders(array $headers)
     {
-        $headers = ['Handled-By' => 'Shortl Shortl', 'HTTP/1.1' => '200 OK'] + $array;
-
-        foreach ($headers as $header => $value) {
+        foreach ($headers + ['Handled-By' => 'Shor.tl', 'HTTP/1.1' => '200 OK'] as $header => $value) {
             header(implode(': ', [$header, $value]));
         }
     }
