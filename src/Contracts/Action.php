@@ -10,13 +10,6 @@ interface Action
 {
 
     /**
-     * Action constructor.
-     * @param $config
-     */
-    public function __construct(array $config);
-
-
-    /**
      * @param Request $request
      * @param Response $response
      * @return mixed
