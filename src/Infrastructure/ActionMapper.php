@@ -26,9 +26,9 @@ final class ActionMapper
      * @return Action
      * @throws ActionNotFound
      */
-    public function __invoke(Request $request)  : Action
+    public function __invoke(Request $request, array $config)  : Action
     {
-        return $this->getAction($request);
+        return $this->getAction($request, $config);
     }
 
 
@@ -37,7 +37,7 @@ final class ActionMapper
      * @return Action
      * @throws ActionNotFound
      */
-    private function getAction(Request $request) : Action
+    private function getAction(Request $request, array $config) : Action
     {
         $action = null;
 
@@ -53,7 +53,7 @@ final class ActionMapper
             throw new ActionNotFound($request->action . ' not found');
         }
 
-        return new $action();
+        return new $action($config);
     }
 
 

@@ -16,21 +16,34 @@ use Shortl\Shortl\Repositories\ShortenedUrl;
  */
 class GetShortUrl implements Action
 {
+    /**
+     * @var array
+     */
+    private $config;
 
+
+    /**
+     * GetShortUrl constructor.
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
 
     /**
      * @param Request $request
      * @param Response $response
-     * @param array $config
      * @return mixed
      */
-    public function __invoke(Request $request, Response $response, array $config)
+    public function __invoke(Request $request, Response $response)
     {
-        $dto = Url::findShortenedUrlBySlug(new ShortenedUrl($config), $request->action);
+        $dto = Url::findShortenedUrlBySlug(new ShortenedUrl($this->config), $request->action);
 
         return $response('', [
-            'Location' => $dto->url
-        ], 301);
+            'Location' => $dto->url,
+            'HTTP/1.1' => 301
+        ]);
     }
 
 }

@@ -18,7 +18,28 @@ use Shortl\Shortl\Repositories\ShortenedUrl;
  */
 class CreateShortUrl implements Action
 {
-    public function __invoke(Request $request, Response $response, array $config)
+    /**
+     * @var array
+     */
+    private $config;
+
+
+    /**
+     * GetShortUrl constructor.
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
+    public function __invoke(Request $request, Response $response)
     {
 
         $parts = $request->uri_parts;
@@ -26,13 +47,13 @@ class CreateShortUrl implements Action
         $url = $query['url'] ?? false;
 
         try {
-            $dto = Url::createShortenedUrlFromUrl(new ShortenedUrl($config), $url);
+            $dto = Url::createShortenedUrlFromUrl(new ShortenedUrl($this->config), $url);
 
             $content = (new JsonFormatter(
                 [
                     'data' => [
                         'url' => $dto->url,
-                        'short_url' => $config['base_url'] . $dto->slug
+                        'short_url' => $this->config['base_url'] . $dto->slug
                     ]
                 ]
             ))->output;
@@ -55,7 +76,8 @@ class CreateShortUrl implements Action
         return $response(
             $content,
             [
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'HTTP/1.1' => $status
             ],
             $status
         );

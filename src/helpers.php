@@ -16,7 +16,7 @@ use Shortl\Shortl\Infrastructure\EntityNotFound;
  */
 function not_found(Response $response, string $type, array $config, int $status = 302) : string
 {
-    return $response('', ['Location' => $config['redirect_url'], 'Type-Of-Missing' => $type], $status);
+    return $response('', ['Location' => $config['redirect_url'], 'Type-Of-Missing' => $type, 'HTTP/1.1' => $status]);
 }
 
 
