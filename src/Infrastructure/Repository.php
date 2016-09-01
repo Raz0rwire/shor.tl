@@ -57,27 +57,13 @@ abstract class Repository
     /**
      * @param Dto $dto
      * @param $identifier
-     * @param array $args
      * @return Dto
      * @throws EntityNotFound
      */
-    public function get(Dto $dto, $identifier, $args = []) : Dto
+    public function get(Dto $dto, $identifier) : Dto
     {
         $statement = $this->connection->prepare(sprintf('select * from %s where %s = :identifier', $this->table, $this->primary_key));
-
-        $statement->execute(
-            [
-                ':identifier' => $identifier
-            ]
-        );
-
-        $result = $statement->fetch(self::fetchMode);
-
-        if (!$result) {
-            throw new EntityNotFound();
-        }
-
-        return $dto($result);
+        return $this->retrieve($statement, $dto, $identifier);
     }
 
 
@@ -91,7 +77,19 @@ abstract class Repository
     public function find(Dto $dto, $identifier, $args = [])
     {
         $statement = $this->connection->prepare(sprintf('select * from %s where %s = :identifier', $this->table, $args['column']));
+        return $this->retrieve($statement, $dto, $identifier);
+    }
 
+
+    /**
+     * @param \PDOStatement $statement
+     * @param Dto $dto
+     * @param $identifier
+     * @return mixed
+     * @throws EntityNotFound
+     */
+    private function retrieve(\PDOStatement $statement, Dto $dto, $identifier)
+    {
         $statement->execute(
             [
                 ':identifier' => $identifier
