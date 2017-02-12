@@ -16,8 +16,9 @@ final class ShortUrl implements Dto
     private $properties = [
         'slug',
         'url',
-        'created_at'
+        'created_at',
+        'clicks'
     ];
 
-    private $slug, $url, $created_at;
+    private $slug, $url, $created_at, $clicks;
 }

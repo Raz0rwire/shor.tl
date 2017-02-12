@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'base_url' => 'https://shor.tl/',
-    'redirect_url' => 'https://shor.tl/404'
+    'base_url' => 'http://127.0.0.1:8080/',
+    'redirect_url' => 'https://haakmaarraak.nl/404'
 ];

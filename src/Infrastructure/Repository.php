@@ -114,7 +114,7 @@ abstract class Repository
      */
     public function add(Dto $dto, $identifier, $args = [])
     {
-        $statement = $this->connection->prepare(sprintf('insert into %s (%s) values (%s)', $this->table, $this->prepareKeys($dto), $this->prepareValues($dto)));
+        $statement = $this->connection->prepare(sprintf('insert into %s (%s) values (%s) on duplicate key update `clicks` = `clicks` + 1', $this->table, $this->prepareKeys($dto), $this->prepareValues($dto)));
 
         $statement->execute(
             $dto->export()

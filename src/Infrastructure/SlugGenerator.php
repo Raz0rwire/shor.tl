@@ -8,7 +8,6 @@ namespace Shortl\Shortl\Infrastructure;
  */
 final class SlugGenerator
 {
-
     const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
     /**

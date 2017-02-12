@@ -38,11 +38,14 @@ class GetShortUrl implements Action
      */
     public function __invoke(Request $request, Response $response)
     {
-        $dto = Url::findShortenedUrlBySlug(new ShortenedUrl($this->config), $request->action);
+        $repository = new ShortenedUrl($this->config);
+        $dto = Url::findShortenedUrlBySlug($repository, $request->action);
+
+        Url::incrementClicks($repository, $request->action, $dto);
 
         return $response('', [
             'Location' => $dto->url,
-            'HTTP/1.1' => 301
+            'HTTP/1.1' => 302
         ]);
     }
 
